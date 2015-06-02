@@ -1,15 +1,15 @@
 #include "list.h"
 
 #define LIST_DEFINE(type)\
-void list_##type##_cons(list_##type## *list, t elt)\
+void type##_list_cons(type##_list *list, type elt)\
 {\
-  struct list_##type## *res = malloc(sizeof (type##list));\
+  struct type##_list *res = malloc(sizeof (type##list));\
   res->data = elt;\
   res->next = list;\
   return res;\
 }\
 \
-int list_##type##_length(list_##type## *list)\
+int type##_list_length(type##_list *list)\
 {\
   type##list *tmp = list;\
   uint length = 0;\
@@ -21,35 +21,35 @@ int list_##type##_length(list_##type## *list)\
   return length;\
 }\
 \
-t list_##type##_head(list_##type## *list)\
+type type##_list_head(type##_list *list)\
 {\
   return list->data;\
 }\
 \
-list_##type## *list_##type##_tail(list_##type## *list)\
+type##_list *type##_list_tail(type##_list *list)\
 {\
   return list->next;\
 }\
 \
-list_##type## *list_##type##_concat(list_##type## *l1, list_##type## *l2)\
+type##_list *type##_list_concat(type##_list *l1, type##_list *l2)\
 {\
   if (!l1)\
     return l2;\
-  list_##type## *tmp = l1;\
+  type##_list *tmp = l1;\
   while (tmp->next)\
     tmp = tmp->next;\
   tmp->next = l2;\
   return l1;\
 }\
 \
-t list_##type##_nth(list_##type## *list, int pos)\
+type type##_list_nth(type##_list *list, int pos)\
 {\
   while (pos > 0)\
     list = list->next;\
   return list->data;\
 }\
 \
-int list_##type##_pos(list_##type## *list, t elt)\
+int type##_list_pos(type##_list *list, type elt)\
 {\
   uint pos = 0;\
   while (list && list->data != elt)\

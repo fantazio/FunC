@@ -1,38 +1,41 @@
 #ifndef LIST_H
-#define LIST_H
+ #define LIST_H
 
-#define LIST_DECLARE(type)\
+ #define LIST_DECLARE(type)\
 \
 /** type t_list */\
-typedef struct list_##type##_s\
+typedef struct type##_list_s\
 {\
     type data;\
-    struct list_##type##_s *next;\
-}\ list_##type##;\
+    struct type##_list_s *next;\
+}\ type##_list;\
 \
 /** Creates a new t_list with old t_list as tail and new element as head */\
-void list_##type##_cons(list_##type## *, t);\
+void type##_list_cons(type##_list *, type);\
 \
 /** Returns the length of the given t_list */\
-int list_##type##_length(list_##type## *);\
+int type##_list_length(type##_list *);\
 \
 /** Gives first element
 ** Risk of Segfault if given null */\
-t list_##type##_head(list_##type## *);\
+type type##_list_head(type##_list *);\
 \
 /** Gives t_list without its first element 
 ** Risk of Segfault if given null */\
-list_##type## *list_##type##_tail(list_##type## *);\
+type##_list *type##_list_tail(type##_list *);\
 \
 /** Concatenates two t_lists */ \
-list_##type## *list_##type##_concat(list_##type## *, list_##type## *);\
+type##_list *type##_list_concat(type##_list *, type##_list *);\
 \
 /** Gives element at the asked position.
 ** Risk of Segfault if position >= length */\
-t list_##type##_nth(list_##type## *, int);\
+type type##_list_nth(type##_list *, int);\
 \
 /** Gives position of asked element if it exists (starting at zero).
 ** Returns -1 if the element is not found */\
-int list_##type##_pos(list_##type## *, t);\
+int type##_list_pos(type##_list *, type);\
 
+
+ #define LIST_TYPE(type) type##_list
+ #define LIST_FUN(type, fun) type##_list_##fun
 #endif /* !LIST_H */
