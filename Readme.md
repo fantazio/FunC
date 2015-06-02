@@ -7,11 +7,12 @@ of most functional languages such as linked lists, map, fold/reduce, ...
 If you want to compile it, you will need 'gcc' or 'clang'.
 A makefile exists. To use it you will need 'make'.
 
-- `make` will get you the **libfunc.a** static library
+- `make` group the sources in the **func** folder
 - `make check` will make and run tests
 
-to use this library in your projects, link it while compiling your project
-and add the header (**func.h**) where necessary.
+To use this library in your projects, add the generated folder to your project
+and add the header **<path>/func/func.h** where necessary
+(with <path>, the path to the folder func).
 
 
 ##Goal

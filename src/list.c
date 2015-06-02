@@ -31,7 +31,7 @@ type##_list *type##_list_tail(type##_list *list)\
   return list->next;\
 }\
 \
-type##_list *type##_list_concat(type##_list *l1, type##_list *l2)\
+type##_list *type##_list_append(type##_list *l1, type##_list *l2)\
 {\
   if (!l1)\
     return l2;\
@@ -47,6 +47,22 @@ type type##_list_nth(type##_list *list, int pos)\
   while (pos > 0)\
     list = list->next;\
   return list->data;\
+}\
+\
+type##_list *type##_list_rev(type##_list *list)\
+{\
+  if (!list)\
+    list;\
+  type##_list *next = list->next;\
+  list->next = NULL;\
+  while (next)\
+  {\
+    type##_list *tmp = next->next;\
+    next->next = list;\
+    list = next;\
+    next = tmp;\
+  }\
+  return list;\
 }\
 \
 int type##_list_pos(type##_list *list, type elt)\

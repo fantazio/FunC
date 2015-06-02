@@ -24,12 +24,15 @@ type type##_list_head(type##_list *);\
 ** Risk of Segfault if given null */\
 type##_list *type##_list_tail(type##_list *);\
 \
-/** Concatenates two t_lists */ \
-type##_list *type##_list_concat(type##_list *, type##_list *);\
+/** Appends two t_lists */ \
+type##_list *type##_list_append(type##_list *, type##_list *);\
 \
 /** Gives element at the asked position.
 ** Risk of Segfault if position >= length */\
 type type##_list_nth(type##_list *, int);\
+\
+/** Reverses a list */\
+type##_list *type##_list_rev(type##_list *);\
 \
 /** Gives position of asked element if it exists (starting at zero).
 ** Returns -1 if the element is not found */\
