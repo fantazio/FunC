@@ -7,7 +7,7 @@ of most functional languages such as linked lists, map, fold/reduce, ...
 If you want to compile it, you will need 'gcc' or 'clang'.
 A makefile exists. To use it you will need 'make'.
 
-- `make` will get you the **func.a** library
+- `make` will get you the **libfunc.a** static library
 - `make check` will make and run tests
 
 to use this library in your projects, link it while compiling your project
