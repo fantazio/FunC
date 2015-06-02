@@ -17,8 +17,8 @@ and add the header **<path>/func/func.h** where necessary
 
 ##Goal
 Add fun to C.
-The intent is to improve my skills in C, focusing on pointers to functions,
-memory management and macros.
+The intent is to improve my skills in C, focusing on macros, function pointers
+and memory management.
 
 
 ##How do I contribute?
