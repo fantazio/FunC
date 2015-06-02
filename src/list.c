@@ -1,6 +1,7 @@
 #include "list.h"
 
 #define LIST_DEFINE(type)\
+LIST_DECLARE(type)\
 void type##_list_cons(type##_list *list, type elt)\
 {\
   struct type##_list *res = malloc(sizeof (type##list));\
@@ -26,12 +27,12 @@ type type##_list_head(type##_list *list)\
   return list->head;\
 }\
 \
-type##_list *type##_list_tail(type##_list *list)\
+type##_list * type##_list_tail(type##_list *list)\
 {\
   return list->tail;\
 }\
 \
-type##_list *type##_list_append(type##_list *l1, type##_list *l2)\
+type##_list * type##_list_append(type##_list *l1, type##_list *l2)\
 {\
   if (!l1)\
     return l2;\
@@ -49,7 +50,7 @@ type type##_list_nth(type##_list *list, int pos)\
   return list->head;\
 }\
 \
-type##_list *type##_list_rev(type##_list *list)\
+type##_list * type##_list_rev(type##_list *list)\
 {\
   if (!list)\
     list;\

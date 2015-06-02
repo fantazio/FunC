@@ -1,6 +1,6 @@
 CC? = clang
 CFLAGS? = -std=c99 -pedantic -Wall -Wextra -Werror
-SRC = src/func.c
+SRC = $(wildcard src/*.c)
 RES = func
 BUILD_DIR = func/
 SRC_TEST = check/main.c
@@ -16,7 +16,7 @@ $(BUILD_DIR):
 	mkdir $(BUILD_DIR)
 
 check: library
-	$(CC) $(SRC_TEST) -o $(RES_TEST)
+	$(CC) $(src) $(SRC_TEST) -o $(RES_TEST)
 	./$(RES_TEST)
 
 clean:
