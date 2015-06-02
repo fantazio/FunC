@@ -7,7 +7,7 @@ SRC_TEST = check/main.c
 RES_TEST = check/test
 
 library: $(BUILD_DIR)
-	cp -r src/ $^
+	cp -r src/* $^
 
 %.o: %.c
 	$(COMPILE.c) $^ -o $@

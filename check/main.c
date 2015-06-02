@@ -7,7 +7,7 @@
 #define BUILD_LIST(type, elt)\
   LIST_TYPE(type) *build_##type##_list(void)\
 {\
-  LIST_TYPE(type) *list = LIST_FUN(type, cons)(elt, list);\
+  LIST_TYPE(type) *list = LIST_FUN(type, cons)(elt, NULL);\
   list = LIST_FUN(type, cons)(elt, list);\
   list = LIST_FUN(type, cons)(elt, list);\
   list = LIST_FUN(type, cons)(elt, list);\
