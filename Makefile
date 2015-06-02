@@ -1,15 +1,13 @@
 CC? = clang
 CFLAGS? = -std=c99 -pedantic -Wall -Wextra -Werror
 SRC = src/func.c
-RES= func
-OBJ = $(SRC:.c=.o)
-BUILD_DIR = lib/
+RES = func
+BUILD_DIR = func/
 SRC_TEST = check/main.c
 RES_TEST = check/test
 
-library: $(OBJ) | $(BUILD_DIR)
-	ar csr $(BUILD_DIR)lib$(RES).a $^
-	rm -rf $(BUILD_DIR) $(OBJ)
+library: $(BUILD_DIR)
+	cp -r src/ $^
 
 %.o: %.c
 	$(COMPILE.c) $^ -o $@
@@ -22,4 +20,4 @@ check: library
 	./$(RES_TEST)
 
 clean:
-	rm -rf $(BUILD_DIR) $(OBJ) $(RES_TEST)
+	rm -rf $(BUILD_DIR) $(RES_TEST)
