@@ -1,4 +1,4 @@
-CC? = gcc
+CC? = clang
 CFLAGS? = -std=c99 -pedantic -Wall -Wextra -Werror
 SRC = src/list.c
 RES= func
