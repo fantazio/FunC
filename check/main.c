@@ -53,7 +53,7 @@ test_##type##_list_rev();
 test_##type##_list_cons(build_##type##_list(), elt);
 
 
-/// Testing cons
+/// Testing length
 #define TEST_LIST_LENGTH(type)\
   void test_##type##_list_length(LIST_TYPE(type) *list, int size)\
 {\
@@ -74,6 +74,25 @@ test_##type##_list_cons(build_##type##_list(), elt);
 test_##type##_list_length(build_##type##_list(), elt);
 
 
+/// Testing length
+#define TEST_LIST_HEAD(type)\
+  void test_##type##_list_head(LIST_TYPE(type) *list)\
+{\
+  if (list)\
+  {\
+    LIST_TYPE(type) *l = LIST_FUN(type, cons)(list->head, list);\
+    assert(LIST_FUN(type, head)(l) == l->head);\
+    assert(LIST_FUN(type, head)(l) == list->head);\
+    assert(LIST_FUN(type, head)(l) == LIST_FUN(type, head)(list));\
+    assert(LIST_FUN(type, head)(l->tail) == LIST_FUN(type, head)(list));\
+  }\
+}\
+
+#define LIST_HEAD(type)\
+  test_##type##_list_head(NULL);\
+test_##type##_list_head(build_##type##_list());
+
+
 
 /// Tests definitions
 #define TEST_LIST_DEF(type, elt)\
@@ -82,6 +101,7 @@ LIST_DEFINE(type)\
 BUILD_LIST(type, elt)\
 TEST_LIST_CONS(type)\
 TEST_LIST_LENGTH(type)\
+TEST_LIST_HEAD(type)\
 TEST_LIST_REV(type)
 
   TEST_LIST_DEF(int, 0)
@@ -93,6 +113,7 @@ TEST_LIST_DEF(unsigned, 0)
 #define TEST_LIST(type, elt)\
     LIST_CONS(type, elt)\
   LIST_LENGTH(type, 5)\
+  LIST_HEAD(type)\
   LIST_REV(type)
 
 
