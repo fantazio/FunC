@@ -1,6 +1,6 @@
 #include <assert.h>
 
-#include "../func/func.h"
+#include "../func/list.h"
 
 
 /// Lists creation
@@ -61,15 +61,16 @@ BUILD_LIST(type, elt)\
 TEST_LIST_CONS(type)\
 TEST_LIST_REV(type)
 
-/// Launch all tests
-#define TEST_LIST(type, elt)\
-  LIST_CONS(type, elt)\
-LIST_REV(type)
-
   TEST_LIST_DEF(int, 0)
 TEST_LIST_DEF(double, 0.)
   TEST_LIST_DEF(char, '0')
 TEST_LIST_DEF(unsigned, 0)
+
+  /// Launch all tests
+#define TEST_LIST(type, elt)\
+    LIST_CONS(type, elt)\
+  LIST_REV(type)
+
 
 int main(int argc, char *argv[])
 {
