@@ -1,6 +1,6 @@
 CC? = gcc
 CFLAGS? = -std=c99 -pedantic -Wall -Wextra -Werror
-SRC =
+SRC = src/list.c
 RES= func
 OBJ = $(SRC:.c=.o)
 BUILD_DIR = lib/
