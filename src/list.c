@@ -1,11 +1,9 @@
 #ifndef LIST_C
  #define LIST_C
 
- #include "list.h"
  #include <stdlib.h>
 
  #define LIST_DEFINE(type)\
-LIST_DECLARE(type)\
 type##_list *type##_list_cons(type elt, type##_list *list)\
 {\
   type##_list *res = malloc(sizeof (type##_list));\

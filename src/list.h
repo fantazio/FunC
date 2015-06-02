@@ -41,5 +41,5 @@ int type##_list_pos(type##_list *, type);\
 
  #define LIST_TYPE(type) type##_list
  #define LIST_FUN(type, fun) type##_list_##fun
-
+ #include "list.c"
 #endif /* !LIST_H */
