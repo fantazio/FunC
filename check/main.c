@@ -17,7 +17,7 @@
 
 
 
-/// Testing reverse
+/// Testing rev
 #define TEST_LIST_REV(type)\
   void test_##type##_list_rev(void)\
 {\
@@ -113,6 +113,38 @@ test_##type##_list_head(build_##type##_list());
   test_##type##_list_tail(NULL);\
 test_##type##_list_tail(build_##type##_list());
 
+
+/// Testing append
+#define TEST_LIST_APPEND(type)\
+  void test_##type##_list_append(LIST_TYPE(type) *l1, LIST_TYPE(type) *l2)\
+{\
+  if (l1)\
+  assert(LIST_FUN(type, append)(l1, l2) == l1);\
+  else\
+  assert(LIST_FUN(type, append)(l1, l2) == l2);\
+  assert(LIST_FUN(type, length)(LIST_FUN(type, append) (l1, l2))\
+      == LIST_FUN(type, length)(l1) + LIST_FUN(type, length)(l2));\
+  assert(LIST_FUN(type, length)(LIST_FUN(type, append) (l1, l2))\
+      == LIST_FUN(type, length)(LIST_FUN(type, append)(l2, l1)));\
+  assert(LIST_FUN(type, length)(LIST_FUN(type, append) (l1, l1))\
+      == 2 * LIST_FUN(type, length)(l1));\
+  if (l1)\
+  assert(LIST_FUN(type, rev)(LIST_FUN(type, append)\
+        (LIST_FUN(type, cons)(l1->head, NULL),l1->tail))\
+      == LIST_FUN(type, rev)(l1));\
+  if (l2)\
+  assert(LIST_FUN(type, rev)(LIST_FUN(type, append)(l1, l2))\
+      == LIST_FUN(type, rev)(l2));\
+}\
+
+#define LIST_APPEND(type)\
+  test_##type##_list_append(NULL, NULL);\
+test_##type##_list_append(build_##type##_list(), NULL);\
+test_##type##_list_append(NULL, build_##type##_list());\
+test_##type##_list_append(build_##type##_list(), build_##type##_list());
+
+
+
 /// Tests definitions
 #define TEST_LIST_DEF(type, elt)\
   LIST_DECLARE(type)\
@@ -122,7 +154,8 @@ TEST_LIST_CONS(type)\
 TEST_LIST_LENGTH(type)\
 TEST_LIST_HEAD(type)\
 TEST_LIST_TAIL(type)\
-TEST_LIST_REV(type)
+TEST_LIST_REV(type)\
+TEST_LIST_APPEND(type)
 
   TEST_LIST_DEF(int, 0)
 TEST_LIST_DEF(double, 0.)
@@ -135,10 +168,11 @@ TEST_LIST_DEF(unsigned, 0)
   LIST_LENGTH(type, 5)\
   LIST_HEAD(type)\
   LIST_TAIL(type)\
-  LIST_REV(type)
+  LIST_REV(type)\
+  LIST_APPEND(type)
 
 
-int main(int argc, char *argv[])
+int main(void)
 {
   TEST_LIST(int, 4);
   TEST_LIST(double, 4.);
