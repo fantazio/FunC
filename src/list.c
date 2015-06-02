@@ -1,10 +1,14 @@
-#include "list.h"
+#ifndef LIST_C
+ #define LIST_C
 
-#define LIST_DEFINE(type)\
+ #include "list.h"
+ #include <stdlib.h>
+
+ #define LIST_DEFINE(type)\
 LIST_DECLARE(type)\
-void type##_list_cons(type##_list *list, type elt)\
+type##_list *type##_list_cons(type elt, type##_list *list)\
 {\
-  struct type##_list *res = malloc(sizeof (type##list));\
+  type##_list *res = malloc(sizeof (type##_list));\
   res->head = elt;\
   res->tail = list;\
   return res;\
@@ -12,8 +16,8 @@ void type##_list_cons(type##_list *list, type elt)\
 \
 int type##_list_length(type##_list *list)\
 {\
-  type##list *tmp = list;\
-  uint length = 0;\
+  type##_list *tmp = list;\
+  unsigned length = 0;\
   while (tmp)\
   {\
     tmp = tmp->tail;\
@@ -68,7 +72,7 @@ type##_list * type##_list_rev(type##_list *list)\
 \
 int type##_list_pos(type##_list *list, type elt)\
 {\
-  uint pos = 0;\
+  unsigned pos = 0;\
   while (list && list->head != elt)\
   {\
     list = list->tail;\
@@ -76,3 +80,5 @@ int type##_list_pos(type##_list *list, type elt)\
   }\
   return list ? pos : -1;\
 }\
+
+#endif /* !LIST_C */

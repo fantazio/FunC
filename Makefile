@@ -16,8 +16,8 @@ $(BUILD_DIR):
 	mkdir $(BUILD_DIR)
 
 check: library
-	$(CC) $(src) $(SRC_TEST) -o $(RES_TEST)
+	$(CC) $(src) $(SRC_TEST) -g3 -o $(RES_TEST)
 	./$(RES_TEST)
 
 clean:
-	rm -rf $(BUILD_DIR) $(RES_TEST)
+	rm -rf $(wildcard */*.o) $(BUILD_DIR) $(RES_TEST)*
