@@ -6,8 +6,8 @@
 /** type t_list */\
 typedef struct type##_list_s\
 {\
-    type data;\
-    struct type##_list_s *next;\
+    type head;\
+    struct type##_list_s *tail;\
 }\ type##_list;\
 \
 /** Creates a new t_list with old t_list as tail and new element as head */\

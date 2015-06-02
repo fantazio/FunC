@@ -4,8 +4,8 @@
 void type##_list_cons(type##_list *list, type elt)\
 {\
   struct type##_list *res = malloc(sizeof (type##list));\
-  res->data = elt;\
-  res->next = list;\
+  res->head = elt;\
+  res->tail = list;\
   return res;\
 }\
 \
@@ -15,7 +15,7 @@ int type##_list_length(type##_list *list)\
   uint length = 0;\
   while (tmp)\
   {\
-    tmp = tmp->next;\
+    tmp = tmp->tail;\
     ++length;\
   }\
   return length;\
@@ -23,12 +23,12 @@ int type##_list_length(type##_list *list)\
 \
 type type##_list_head(type##_list *list)\
 {\
-  return list->data;\
+  return list->head;\
 }\
 \
 type##_list *type##_list_tail(type##_list *list)\
 {\
-  return list->next;\
+  return list->tail;\
 }\
 \
 type##_list *type##_list_append(type##_list *l1, type##_list *l2)\
@@ -36,29 +36,29 @@ type##_list *type##_list_append(type##_list *l1, type##_list *l2)\
   if (!l1)\
     return l2;\
   type##_list *tmp = l1;\
-  while (tmp->next)\
-    tmp = tmp->next;\
-  tmp->next = l2;\
+  while (tmp->tail)\
+    tmp = tmp->tail;\
+  tmp->tail = l2;\
   return l1;\
 }\
 \
 type type##_list_nth(type##_list *list, int pos)\
 {\
   while (pos > 0)\
-    list = list->next;\
-  return list->data;\
+    list = list->tail;\
+  return list->head;\
 }\
 \
 type##_list *type##_list_rev(type##_list *list)\
 {\
   if (!list)\
     list;\
-  type##_list *next = list->next;\
-  list->next = NULL;\
+  type##_list *next = list->tail;\
+  list->tail = NULL;\
   while (next)\
   {\
-    type##_list *tmp = next->next;\
-    next->next = list;\
+    type##_list *tmp = next->tail;\
+    next->tail = list;\
     list = next;\
     next = tmp;\
   }\
@@ -68,9 +68,9 @@ type##_list *type##_list_rev(type##_list *list)\
 int type##_list_pos(type##_list *list, type elt)\
 {\
   uint pos = 0;\
-  while (list && list->data != elt)\
+  while (list && list->head != elt)\
   {\
-    list = list->next;\
+    list = list->tail;\
     ++pos;\
   }\
   return list ? pos : -1;\
