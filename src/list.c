@@ -1,8 +1,6 @@
 #ifndef LIST_C
  #define LIST_C
 
- #include <stdlib.h>
-
  #define LIST_DEFINE(type)\
 type##_list *type##_list_cons(type elt, type##_list *list)\
 {\
@@ -47,7 +45,7 @@ type##_list *type##_list_append(type##_list *l1, type##_list *l2)\
 \
 type type##_list_nth(type##_list *list, int pos)\
 {\
-  while (pos > 0)\
+  while (pos-- > 0)\
     list = list->tail;\
   return list->head;\
 }\

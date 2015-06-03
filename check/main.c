@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <stdlib.h>
 
 #include "../func/list.h"
 
@@ -135,6 +136,26 @@ test_##type##_list_append(NULL, build_##type##_list());\
 test_##type##_list_append(build_##type##_list(), build_##type##_list());
 
 
+/// Testing nth
+#define TEST_LIST_NTH(type)\
+  void test_##type##_list_nth(LIST_TYPE(type) *l, type e)\
+{\
+  assert(e == LIST_FUN(type, nth)(LIST_FUN(type, cons) (e, l), 0));\
+  if (l)\
+  {\
+    assert(l->head == LIST_FUN(type, nth)(l, 0));\
+    assert(l->head == LIST_FUN(type, nth)(LIST_FUN(type, cons) (e, l), 1));\
+    assert(LIST_FUN(type, nth)\
+        (LIST_FUN(type, cons)(e, LIST_FUN(type, cons(e, l))), 1)\
+        == LIST_FUN(type, nth)(LIST_FUN(type, cons) (e, l), 0));\
+  }\
+}\
+
+#define LIST_NTH(type, elt)\
+  test_##type##_list_nth(NULL, elt);\
+test_##type##_list_nth(build_##type##_list(), elt);\
+
+
 
 /// Tests definitions
 #define TEST_LIST_DEF(type, elt)\
@@ -146,7 +167,8 @@ TEST_LIST_LENGTH(type)\
 TEST_LIST_HEAD(type)\
 TEST_LIST_TAIL(type)\
 TEST_LIST_REV(type)\
-TEST_LIST_APPEND(type)
+TEST_LIST_APPEND(type)\
+TEST_LIST_NTH(type)\
 
   TEST_LIST_DEF(int, 0)
 TEST_LIST_DEF(double, 0.)
@@ -160,7 +182,8 @@ TEST_LIST_DEF(unsigned, 0)
   LIST_HEAD(type)\
   LIST_TAIL(type)\
   LIST_REV(type)\
-  LIST_APPEND(type)
+  LIST_APPEND(type)\
+  LIST_NTH(type, elt)\
 
 
 int main(void)
