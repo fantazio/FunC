@@ -2,3 +2,4 @@
 **.o
 func/
 check/test*
+!check/test*.[hc]
