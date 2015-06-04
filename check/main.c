@@ -156,6 +156,26 @@ test_##type##_list_append(build_##type##_list(), build_##type##_list());
 test_##type##_list_nth(build_##type##_list(), elt);\
 
 
+/// Testing pos
+#define TEST_LIST_POS(type)\
+  void test_##type##_list_pos(LIST_TYPE(type) *l, type e)\
+{\
+  assert(0 == LIST_FUN(type, pos)(LIST_FUN(type, cons) (e, l), e));\
+  if (l)\
+  {\
+    assert(0 == LIST_FUN(type, pos)(l, l->head));\
+    assert(1 == LIST_FUN(type, pos)(LIST_FUN(type, cons) (e, l), l->head));\
+    assert(LIST_FUN(type, pos)\
+        (LIST_FUN(type, cons)(e, LIST_FUN(type, cons(e, l))), e)\
+        == LIST_FUN(type, pos)(LIST_FUN(type, cons) (e, l), e));\
+    l = LIST_FUN(type, cons)(e, l);\
+    assert(1 >= LIST_FUN(type, pos)(l, LIST_FUN(type, nth)(l, 1)));\
+  }\
+}\
+
+#define LIST_POS(type, elt)\
+  test_##type##_list_pos(NULL, elt);\
+test_##type##_list_pos(build_##type##_list(), elt);\
 
 /// Tests definitions
 #define TEST_LIST_DEF(type, elt)\
@@ -169,6 +189,7 @@ TEST_LIST_TAIL(type)\
 TEST_LIST_REV(type)\
 TEST_LIST_APPEND(type)\
 TEST_LIST_NTH(type)\
+TEST_LIST_POS(type)\
 
   TEST_LIST_DEF(int, 0)
 TEST_LIST_DEF(double, 0.)
@@ -184,6 +205,7 @@ TEST_LIST_DEF(unsigned, 0)
   LIST_REV(type)\
   LIST_APPEND(type)\
   LIST_NTH(type, elt)\
+  LIST_POS(type, elt)\
 
 
 int main(void)
