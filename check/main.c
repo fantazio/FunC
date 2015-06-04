@@ -24,8 +24,8 @@
 {\
   LIST_TYPE(type) *list = build_##type##_list();\
   assert(LIST_FUN(type, rev)(LIST_FUN(type, rev)(list)) == list);\
-  assert(LIST_FUN(type, length)(list = LIST_FUN(type, rev)(list))\
-      == LIST_FUN(type, length)(list));\
+  assert(LIST_FUN(type, length)(list)\
+      == LIST_FUN(type, length)(LIST_FUN(type, rev)(list)));\
 }
 
 

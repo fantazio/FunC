@@ -74,7 +74,7 @@ int type##_list_pos(type##_list *list, type elt)\
     list = list->tail;\
     ++pos;\
   }\
-  return list ? pos : -1;\
+  return list ? (int) pos : -1;\
 }\
 
 #endif /* !LIST_C */
