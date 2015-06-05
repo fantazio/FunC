@@ -2,7 +2,7 @@
 #define FUNC_C
  #include "func.h"
 
- #define FUNC_DEFINE(t_in, t_out)\
+ #define FUNC_DEFINE2(t_in, t_out)\
   \
 LIST_TYPE(t_out) * t_in##_##t_out##_map(t_out (*fun)(t_in),\
     LIST_TYPE(t_in) *list)\
@@ -18,15 +18,6 @@ LIST_TYPE(t_out) * t_in##_##t_out##_map(t_out (*fun)(t_in),\
   } while ((list = list->tail));\
   \
   return res;\
-}\
-\
-void t_in##_##t_out##_iter(void (*fun)(t_in), LIST_TYPE(t_in)* list)\
-{\
-  while (list)\
-  {\
-    fun(list->head);\
-    list = list->tail;\
-  }\
 }\
 \
 t_out t_in##_##t_out##_fold_left(t_out (*fun)(t_out, t_in),\
@@ -46,5 +37,16 @@ t_out t_in##_##t_out##_fold_right(t_out (*fun)(t_in, t_out),\
                 t_in##_##t_out##_fold_right(fun, list->tail, end));\
   return fun(list->head, end);\
 }
+
+#define FUNC_DEFINE(t_in)\
+\
+void t_in##_iter(void (*fun)(t_in), LIST_TYPE(t_in)* list)\
+{\
+  while (list)\
+  {\
+    fun(list->head);\
+    list = list->tail;\
+  }\
+}\
 
 #endif /* !FUNC_C */
