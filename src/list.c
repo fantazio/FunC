@@ -39,7 +39,7 @@ type##_list *type##_list_append(type##_list *l1, type##_list *l2)\
   type##_list *tmp = l1;\
   while (tmp->tail)\
     tmp = tmp->tail;\
-    tmp->tail = l2;\
+  tmp->tail = l2;\
   return l1;\
 }\
 \
