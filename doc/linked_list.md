@@ -14,7 +14,7 @@ The entire library is macro based for genericity, starting by the linked list wh
 	} type##_list;					\
 
 This gives us a way to access the current element of the node using `head`, and the next node using `tail`.
-The biggest issue with this macro is that you cannot have a list of pointers as `type` would be replaced by your type followed by *. It would give us something like `struct your_type*_list_s` which is not allowed in C.
+The biggest issue with this macro is that you cannot have a list of pointers as `type` would be replaced by your type followed by * . It would give us something like `struct your_type*_list_s` which is not allowed in C.
 Having a data structure by its own is not really interesting, it needs at least a basic set of functions to use it, its own library.
 _Every functions in this library will be added in the LIST_DEFINE macro._
 
@@ -156,7 +156,7 @@ If you started building your list by adding the element at the tail, it can be u
 
 
 ######
-To conclude this project's first step, we will have to ensure there is no major issue about using it. Consistency has been kept suring the whole process of writing, with names following the same pattern: *type*_list_*function_name*. The functions are all basically tested to check if the expected behaviour is followed. The last thing is organising code and for that we will simply separate the structure definition and functions declarations from the functions definitions.
+To conclude this project's first step, we will have to ensure there is no major issue about using it. Consistency has been kept suring the whole process of writing, with names following the same pattern: *type* _ list _ *function _ name*. The functions are all basically tested to check if the expected behaviour is followed. The last thing is organising code and for that we will simply separate the structure definition and functions declarations from the functions definitions.
 Two little helpers will be defined:
 + the macro `LIST_TYPE` that takes a type as parameter and is replaced by `type##_list`
 + the macro `LIST_FUN` that takes a type and a function name (as fun) and is replaced by `type##_list_##fun`
