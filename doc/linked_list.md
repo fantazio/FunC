@@ -82,15 +82,15 @@ To do this frequent task, the function `nth` will do the thing.
 
 Consistency leads us to create functions to access the head and the tail also
 
-	type type##_list_head(type##_list *list)	\
-	{											\
-		return list->head;						\
-	}											\
-												\
-	type type##_list_tail(type##_list *list)	\
-	{											\
-		return list->tail;						\
-	}											\
+	type type##_list_head(type##_list *list)			\
+	{													\
+		return list->head;								\
+	}													\
+														\
+	type##_list *type##_list_tail(type##_list *list)	\
+	{													\
+		return list->tail;								\
+	}													\
 
 These three functions will have undefined behaviour if used with an invalid list.
 Then `nth` function will also have undefined behaviours when used with a value less than 0 or more than the length of the list. Accessing the nth element of a list has **O(n)** complexity.
