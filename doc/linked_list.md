@@ -14,7 +14,7 @@ The entire library is macro based for genericity, starting by the linked list wh
 This gives us a way to access the current element of the node using `head`, and the next node using `tail`.
 The biggest issue with this macro is that you cannot have a list of pointers as `type` would be replaced by your type followed by * . It would give us something like `struct your_type*_list_s` which is not allowed in C.
 Having a data structure by its own is not really interesting, it needs at least a basic set of functions to use it, its own library.
-_Every functions in this library will be added in the LIST\_DEFINE macro._
+_All the following functions will be added in the LIST\_DEFINE macro._
 
 
 ##No Need for Bob##
