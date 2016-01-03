@@ -13,9 +13,12 @@ typedef struct type##_list_s                                                \
 /** Creates a new t_list with old t_list as tail and new element as head */ \
 type##_list *type##_list_cons(type, type##_list *);                         \
                                                                             \
+/** Frees the first node of the t_list and returns the tail */              \
+type##_list *type##_list_dest(type##_list *);                               \
+                                                                            \
 /** Returns the length of the given t_list */                               \
 int type##_list_length(type##_list *);                                      \
-                                                                            \  
+                                                                            \
 /** Gives first element                                                     \
  ** Risk of Segfault if given null */                                       \
 type type##_list_head(type##_list *);                                       \
@@ -36,7 +39,7 @@ type##_list *type##_list_rev(type##_list *);                                \
                                                                             \
 /** Gives position of asked element if it exists (starting at zero).        \
  ** Returns -1 if the element is not found */                               \
-int type##_list_pos(type##_list *, type);                                   \
+int type##_list_pos(type##_list *, type);
 
 
  #define LIST_TYPE(type) type##_list

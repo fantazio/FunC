@@ -20,4 +20,4 @@ check: library
 	./$(RES_TEST)
 
 clean:
-	rm -rf $(wildcard src/*.o) $(wildcard check/*.o) $(BUILD_DIR) $(RES_TEST)*
+	rm -rf $(wildcard src/*.o) $(wildcard check/*.o) $(BUILD_DIR) $(RES_TEST)*[^h]

@@ -4,8 +4,8 @@ of most functional languages such as linked lists, map, fold/reduce, ...
 
 
 ##How do I use it?
-If you want to compile it, you will need 'gcc' or 'clang'.
-A makefile exists. To use it you will need 'make'.
+If you want to compile it, you will need `gcc` or `clang`.
+A makefile exists. To use it you will need `make`.
 
 - `make` group the sources in the **func** folder
 - `make check` will make and run tests
@@ -21,17 +21,4 @@ The intent is to improve my skills in C, focusing on macros, function pointers
 and memory management.
 
 
-##How do I contribute?
-As the goal for me is to learn things, I would prefer to do the entire project
-by myself. However, having someone participating can be instructive, this is
-why some other people could sometimes join in.
-
-
-##Authors
-- fantazio
-
-[fantazio on wordpress](https://corentindsz.wordpress.com)
-
-[fantazio on tumblr](http://corentindsz.tumblr.com)
-
-[fantazio on twitter](https://twitter.com/CorentinDsz)
+[wordpress](https://corentindsz.wordpress.com/category/functional-programming-2/func/)

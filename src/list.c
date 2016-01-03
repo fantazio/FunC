@@ -10,6 +10,13 @@ type##_list *type##_list_cons(type elt, type##_list *list)          \
   return res;                                                       \
 }                                                                   \
                                                                     \
+type##_list *type##_list_dest(type##_list *list)                    \
+{                                                                   \
+  type##_list *res = list->tail;                                    \
+  free(list);                                                       \
+  return res;                                                       \
+}                                                                   \
+                                                                    \
 int type##_list_length(type##_list *list)                           \
 {                                                                   \
   type##_list *tmp = list;                                          \
@@ -35,10 +42,10 @@ type##_list *type##_list_tail(type##_list *list)                    \
 type##_list *type##_list_append(type##_list *l1, type##_list *l2)   \
 {                                                                   \
   if (!l1)                                                          \
-  return l2;                                                        \
+    return l2;                                                      \
   type##_list *tmp = l1;                                            \
   while (tmp->tail)                                                 \
-  tmp = tmp->tail;                                                  \
+    tmp = tmp->tail;                                                \
   tmp->tail = l2;                                                   \
   return l1;                                                        \
 }                                                                   \
@@ -46,14 +53,14 @@ type##_list *type##_list_append(type##_list *l1, type##_list *l2)   \
 type type##_list_nth(type##_list *list, int pos)                    \
 {                                                                   \
   while (pos-- > 0)                                                 \
-  list = list->tail;                                                \
+    list = list->tail;                                              \
   return list->head;                                                \
 }                                                                   \
                                                                     \
 type##_list *type##_list_rev(type##_list *list)                     \
 {                                                                   \
   if (!list)                                                        \
-  return list;                                                      \
+    return list;                                                    \
   type##_list *next = list->tail;                                   \
   list->tail = NULL;                                                \
   while (next)                                                      \
